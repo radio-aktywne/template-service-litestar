@@ -1,0 +1,30 @@
+---
+# Questions
+
+appname:
+  type: str
+  help: The name of the app
+
+importname:
+  type: str
+  help: The name that will be used to import the package in Python code
+  default: "{{ appname | lower | replace('-', '_') }}"
+
+description:
+  type: str
+  help: A short description of the app
+
+docs:
+  type: bool
+  help: Whether to include documentation
+  default: true
+
+releases:
+  type: bool
+  help: Whether you plan to make releases
+  default: true
+
+# Configuration
+
+_subdirectory: src
+_answers_file: .copier-answers.yaml
