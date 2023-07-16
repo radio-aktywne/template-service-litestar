@@ -1,0 +1,38 @@
+from litestar import Litestar, Router
+from litestar.openapi import OpenAPIConfig
+
+from {{ importname }}.api.routes.router import router
+from {{ importname }}.builder import Builder
+from {{ importname }}.config import Config
+from {{ importname }}.state import State
+
+
+class AppBuilder(Builder[Litestar]):
+    """Builds the app.
+
+    Args:
+        config: Config object.
+    """
+
+    def __init__(self, config: Config) -> None:
+        self._config = config
+
+    def _get_route_handlers(self) -> list[Router]:
+        return [router]
+
+    def _build_openapi_config(self) -> OpenAPIConfig:
+        return OpenAPIConfig(
+            title="{{ appname }}",
+            version="0.1.0",
+            description="{{ description }}",
+        )
+
+    def _build_initial_state(self) -> State:
+        return State({"config": self._config})
+
+    def build(self) -> Litestar:
+        return Litestar(
+            route_handlers=self._get_route_handlers(),
+            openapi_config=self._build_openapi_config(),
+            state=self._build_initial_state(),
+        )
