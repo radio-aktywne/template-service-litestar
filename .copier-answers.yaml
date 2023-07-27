@@ -1,6 +1,10 @@
 ---
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: 0.1.2
+_commit: 0.2.1
 _src_path: gh:radio-aktywne/template-meta
+accountname: radio-aktywne
 description: Litestar app template 🌠
-templatename: app-litestar
+reponame: template-app-litestar
+repourl: https://github.com/radio-aktywne/template-app-litestar
+templatename: litestar
+type: app
