@@ -43,7 +43,8 @@
         task = pkgs.go-task;
         trunk = pkgs.trunk-io;
         poetry = pkgs.poetry;
-        copier = pkgs.copier;
+        # Build copier manually, because the nixpkgs version is outdated
+        copier = pkgs.callPackage ./copier.nix {};
         tini = pkgs.tini;
         su-exec = pkgs.su-exec;
         curlie = pkgs.curlie;
