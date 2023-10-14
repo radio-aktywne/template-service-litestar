@@ -41,12 +41,12 @@
         python = pkgs.python311;
         nil = pkgs.nil;
         task = pkgs.go-task;
+        coreutils = pkgs.coreutils;
         trunk = pkgs.trunk-io;
         poetry = pkgs.poetry;
         copier = pkgs.copier;
         tini = pkgs.tini;
         su-exec = pkgs.su-exec;
-        curlie = pkgs.curlie;
       in {
         # Override pkgs argument
         _module.args.pkgs = import inputs.nixpkgs {
@@ -76,10 +76,10 @@
               python
               nil
               task
+              coreutils
               trunk
               poetry
               copier
-              curlie
             ];
 
             shellHook = ''
@@ -94,6 +94,7 @@
             packages = [
               python
               task
+              coreutils
               poetry
             ];
 
@@ -119,6 +120,7 @@
 
             packages = [
               task
+              coreutils
               copier
             ];
           };
@@ -131,6 +133,7 @@
               node
               {%- endif %}
               task
+              coreutils
               trunk
             ];
           };
@@ -141,6 +144,7 @@
             packages = [
               python
               task
+              coreutils
               poetry
             ];
 
@@ -157,6 +161,7 @@
             packages = [
               node
               task
+              coreutils
             ];
           };
           {%- endif %}

@@ -1,17 +1,33 @@
 from litestar import Controller as BaseController
 from litestar import Response, get
+from litestar.di import Provide
 
 from {{ importname }}.api.routes.root.models import GetResponse
-from {{ importname }}.foo import foo
+from {{ importname }}.api.routes.root.service import Service
+
+
+class DependenciesBuilder:
+    """Builder for the dependencies of the controller."""
+
+    async def _build_service(self) -> Service:
+        return Service()
+
+    def build(self) -> dict[str, Provide]:
+        return {
+            "service": Provide(self._build_service),
+        }
 
 
 class Controller(BaseController):
-    """Root controller."""
+    """Controller for the root endpoint."""
+
+    dependencies = DependenciesBuilder().build()
 
     @get(
         summary="GET example",
         description="Example endpoint that showcases a GET request",
     )
-    async def get(self) -> Response[GetResponse]:
-        content = GetResponse(foo=foo())
+    async def get(self, service: Service) -> Response[GetResponse]:
+        foo = await service.foo()
+        content = GetResponse(foo=foo)
         return Response(content)

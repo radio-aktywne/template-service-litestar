@@ -2,7 +2,7 @@ from typing import Literal
 
 from pydantic import Field
 
-from {{ importname }}.models import SerializableModel
+from {{ importname }}.models.base import SerializableModel
 
 
 class GetResponse(SerializableModel):
