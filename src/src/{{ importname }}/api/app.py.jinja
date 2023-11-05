@@ -30,13 +30,6 @@ class AppBuilder:
             description="{{ description }}",
         )
 
-    def _build_initial_state(self) -> State:
-        return State(
-            {
-                "config": self._config,
-            }
-        )
-
     def _build_pydantic_plugin(self) -> PydanticPlugin:
         return PydanticPlugin(
             prefer_alias=True,
@@ -46,6 +39,13 @@ class AppBuilder:
         return [
             self._build_pydantic_plugin(),
         ]
+
+    def _build_initial_state(self) -> State:
+        return State(
+            {
+                "config": self._config,
+            }
+        )
 
     def build(self) -> Litestar:
         return Litestar(
