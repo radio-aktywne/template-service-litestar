@@ -38,6 +38,7 @@ class DummyEvent(SerializableModel):
         title="DummyEvent.Type",
     )
     created_at: CreatedAtFieldType = Field(
+        ...,
         title="DummyEvent.CreatedAt",
     )
     data: DataFieldType[DummyEventData] = Field(
@@ -64,10 +65,11 @@ class FooEvent(SerializableModel):
         title="FooEvent.Type",
     )
     created_at: CreatedAtFieldType = Field(
+        ...,
         title="FooEvent.CreatedAt",
     )
     data: DataFieldType[FooEventData] = Field(
-        FooEventData(),
+        ...,
         title="FooEvent.Data",
     )
 
@@ -78,4 +80,7 @@ Event = DummyEvent | FooEvent
 class ParsableEvent(RootModel):
     """Event that can be parsed from a serialized form."""
 
-    root: Event = Field(discriminator="type")
+    root: Event = Field(
+        ...,
+        discriminator="type",
+    )

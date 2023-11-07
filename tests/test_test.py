@@ -25,7 +25,7 @@ def data() -> dict[str, str]:
         "releases": "false",
         "registry": "false",
         "imagename": "apps/foo",
-        "events": "false",
+        "events": "true",
     }
 
 
