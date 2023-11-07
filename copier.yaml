@@ -72,6 +72,12 @@ events:
   help: Whether you want to include support for application events
   default: false
 
+sse:
+  type: bool
+  help: Whether you want to include an endpoint for Server-Sent Events
+  default: true
+  when: "{{ events }}"
+
 # Configuration
 
 _subdirectory: src
