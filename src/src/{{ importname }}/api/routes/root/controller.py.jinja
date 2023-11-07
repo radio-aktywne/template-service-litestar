@@ -2,6 +2,8 @@ from litestar import Controller as BaseController
 from litestar import Response, get
 from litestar.di import Provide
 
+from {{ importname }}.api.exceptions import ServiceUnavailableException
+from {{ importname }}.api.routes.root.errors import FooError
 from {{ importname }}.api.routes.root.models import GetResponse
 from {{ importname }}.api.routes.root.service import Service
 
@@ -26,8 +28,13 @@ class Controller(BaseController):
     @get(
         summary="GET example",
         description="Example endpoint that showcases a GET request",
+        raises=[ServiceUnavailableException],
     )
     async def get(self, service: Service) -> Response[GetResponse]:
-        foo = await service.foo()
+        try:
+            foo = await service.foo()
+        except FooError as e:
+            raise ServiceUnavailableException() from e
+
         content = GetResponse(foo=foo)
         return Response(content)

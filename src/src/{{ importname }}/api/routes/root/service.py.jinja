@@ -1,3 +1,4 @@
+from {{ importname }}.api.routes.root.errors import FooError
 from {{ importname }}.foo import foo
 from {{ importname }}.models.data import Foo
 
@@ -8,4 +9,7 @@ class Service:
     async def foo(self) -> Foo:
         """Get Foo."""
 
-        return foo()
+        try:
+            return foo()
+        except Exception as e:
+            raise FooError() from e
