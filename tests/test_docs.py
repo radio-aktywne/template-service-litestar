@@ -26,6 +26,7 @@ def data() -> dict[str, str]:
         "registry": "false",
         "imagename": "apps/foo",
         "events": "false",
+        "sse": "false",
     }
 
 
