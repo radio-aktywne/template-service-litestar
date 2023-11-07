@@ -67,6 +67,11 @@ imagename:
   default: "apps/{{ appname }}"
   when: "{{ registry }}"
 
+events:
+  type: bool
+  help: Whether you want to include support for application events
+  default: false
+
 # Configuration
 
 _subdirectory: src

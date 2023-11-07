@@ -1,6 +1,10 @@
 from importlib import metadata
 
 from litestar import Litestar, Router
+{%- if events %}
+from litestar.channels import ChannelsPlugin
+from litestar.channels.backends.memory import MemoryChannelsBackend
+{%- endif %}
 from litestar.contrib.pydantic import PydanticPlugin
 from litestar.openapi import OpenAPIConfig
 from litestar.plugins import PluginProtocol
@@ -29,6 +33,14 @@ class AppBuilder:
             version=metadata.version("{{ importname }}"),
             description="{{ description }}",
         )
+    {%- if events %}
+
+    def _build_channels_plugin(self) -> ChannelsPlugin:
+        return ChannelsPlugin(
+            backend=MemoryChannelsBackend(),
+            channels=["events"],
+        )
+    {%- endif %}
 
     def _build_pydantic_plugin(self) -> PydanticPlugin:
         return PydanticPlugin(
@@ -37,6 +49,9 @@ class AppBuilder:
 
     def _build_plugins(self) -> list[PluginProtocol]:
         return [
+            {%- if events %}
+            self._build_channels_plugin(),
+            {%- endif %}
             self._build_pydantic_plugin(),
         ]
 
