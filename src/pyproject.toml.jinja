@@ -17,6 +17,8 @@ rich = "^13.6"
 # Litestar and Uvicorn are used to build async APIs
 litestar = "^2.3"
 uvicorn = { version = "^0.24", extras = ["standard"] }
+# For correct handling of timezones
+tzdata = "*"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4"
