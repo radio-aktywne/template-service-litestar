@@ -1,15 +1,14 @@
-from typing import Literal
-
 from pydantic import Field
 
 from {{ importname }}.models.base import SerializableModel
+from {{ importname }}.models.data import Foo
 
 
 class GetResponse(SerializableModel):
     """Example GET response."""
 
-    foo: Literal["bar"] = Field(
+    foo: Foo = Field(
         ...,
         title="GetResponse.Foo",
-        description="Should be 'bar'.",
+        description="Example Foo object.",
     )

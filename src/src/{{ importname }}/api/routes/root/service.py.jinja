@@ -1,0 +1,11 @@
+from {{ importname }}.foo import foo
+from {{ importname }}.models.data import Foo
+
+
+class Service:
+    """Service for the root endpoint."""
+
+    async def foo(self) -> Foo:
+        """Get Foo."""
+
+        return foo()

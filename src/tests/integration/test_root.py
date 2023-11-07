@@ -8,4 +8,4 @@ async def test_get(client: AsyncTestClient) -> None:
     async with client as client:
         response = await client.get("/")
         assert response.status_code == HTTP_200_OK
-        assert response.json() == {"foo": "bar"}
+        assert response.json() == {"foo": {"foo": "bar"}}
