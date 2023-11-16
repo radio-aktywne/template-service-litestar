@@ -12,7 +12,7 @@ class ServerConfig(BaseModel):
         description="Host to run the server on.",
     )
     port: int = Field(
-        8080,
+        {{ port }},
         ge=0,
         le=65535,
         title="Port",
