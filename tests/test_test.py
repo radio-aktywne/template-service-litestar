@@ -20,6 +20,7 @@ def data() -> dict[str, str]:
         "reponame": "app-foo",
         "repourl": "https://github.com/radio-aktywne/app-foo",
         "envprefix": "FOO",
+        "port": "8080",
         "docs": "false",
         "docsurl": "https://radio-aktywne.github.io/app-foo",
         "releases": "false",
@@ -49,7 +50,7 @@ def copied_template_directory(
     )
 
     with SandboxedGitRepo(tmp_path):
-        local.cmd.git("add", ".")
+        local.cmd.git("add", "./")
         local.cmd.git("commit", "--message", "Initial commit")
         yield tmp_path
 
@@ -60,7 +61,7 @@ def test_test(copied_template_directory: Path) -> None:
     with CWD(copied_template_directory):
         local.cmd.nix(
             "develop",
-            ".#test",
+            "./#test",
             "--command",
             "--",
             "task",
