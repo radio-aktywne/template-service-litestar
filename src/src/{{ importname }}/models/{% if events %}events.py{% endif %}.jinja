@@ -74,13 +74,5 @@ class FooEvent(SerializableModel):
     )
 
 
-Event = DummyEvent | FooEvent
-
-
-class ParsableEvent(RootModel):
-    """Event that can be parsed from a serialized form."""
-
-    root: Event = Field(
-        ...,
-        discriminator="type",
-    )
+Event = Annotated[DummyEvent | FooEvent, Field(..., discriminator="type")]
+ParsableEvent = RootModel[Event]
