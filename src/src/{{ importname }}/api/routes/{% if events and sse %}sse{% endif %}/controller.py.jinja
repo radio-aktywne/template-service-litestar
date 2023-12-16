@@ -28,7 +28,7 @@ class Controller(BaseController):
 
     @get(
         summary="Get SSE stream",
-        description="Get a stream of Server-Sent Events",
+        description="Get a stream of Server-Sent Events.",
     )
     async def get(self, service: Service) -> ServerSentEvent:
         async def _yield_events() -> AsyncGenerator[str, None]:
