@@ -27,7 +27,7 @@ class Controller(BaseController):
 
     @get(
         summary="GET example",
-        description="Example endpoint that showcases a GET request",
+        description="Example endpoint that showcases a GET request.",
         raises=[ServiceUnavailableException],
     )
     async def get(self, service: Service) -> Response[GetResponse]:
