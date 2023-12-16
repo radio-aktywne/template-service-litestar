@@ -1,8 +1,0 @@
-from {{ importname }}.foo import foo
-from {{ importname }}.models.data import Foo
-
-
-def test_foo():
-    """Test if foo returns default Foo instance."""
-
-    assert foo() == Foo()
