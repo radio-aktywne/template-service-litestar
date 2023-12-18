@@ -1,4 +1,5 @@
 import pytest
+import pytest_asyncio
 from litestar import Litestar
 from litestar.testing import AsyncTestClient
 
@@ -21,8 +22,9 @@ def app(config: Config) -> Litestar:
     return AppBuilder(config).build()
 
 
-@pytest.fixture(scope="session")
-def client(app: Litestar) -> AsyncTestClient:
+@pytest_asyncio.fixture(scope="session")
+async def client(app: Litestar) -> AsyncTestClient:
     """Reusable test client."""
 
-    return AsyncTestClient(app=app)
+    async with AsyncTestClient(app=app) as client:
+        yield client
