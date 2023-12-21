@@ -22,7 +22,9 @@ tzdata = "*"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4"
+# Asyncio support for pytest
 pytest-asyncio = "^0.23"
+# Running dependent services in containers
 testcontainers = "^3.7"
 
 [tool.poetry.scripts]
