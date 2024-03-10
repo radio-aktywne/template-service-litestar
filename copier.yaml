@@ -74,7 +74,7 @@ imagename:
 events:
   type: bool
   help: Whether you want to include support for application events
-  default: false
+  default: true
 
 sse:
   type: bool

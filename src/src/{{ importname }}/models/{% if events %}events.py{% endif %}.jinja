@@ -5,7 +5,7 @@ from pydantic import Field, RootModel
 
 from {{ importname }}.models.base import SerializableModel
 from {{ importname }}.models.data import Foo
-from {{ importname }}.time import utcnow
+from {{ importname }}.time import naiveutcnow
 
 TypeType = TypeVar("TypeType")
 DataType = TypeVar("DataType", bound=SerializableModel)
@@ -16,7 +16,9 @@ TypeFieldType = Annotated[
 ]
 CreatedAtFieldType = Annotated[
     datetime,
-    Field(default_factory=utcnow, description="Time at which the event was created."),
+    Field(
+        default_factory=naiveutcnow, description="Time at which the event was created."
+    ),
 ]
 DataFieldType = Annotated[
     DataType,
