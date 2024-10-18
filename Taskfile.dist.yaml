@@ -142,9 +142,9 @@ tasks:
         vars:
           CLI_ARGS: >-
             --data
-            'appname=foo'
+            'servicename=foo'
             --data
-            'description=Example app'
+            'description=Example service'
             {{ .CLI_ARGS }}
       - task: init-build
       - task: add-build-changes

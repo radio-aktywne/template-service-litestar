@@ -9,8 +9,8 @@ def data() -> dict[str, str]:
     """Return a dictionary with the data to be used in the template."""
 
     return {
-        "appname": "foo",
-        "description": "Example app",
+        "servicename": "foo",
+        "description": "Example service",
     }
 
 

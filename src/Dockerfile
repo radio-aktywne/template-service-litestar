@@ -41,32 +41,12 @@ RUN useradd --create-home service
 COPY scripts/shell.sh scripts/shell.sh
 SHELL ["/service/scripts/shell.sh"]
 
-# Copy Poetry files
-COPY poetry.lock poetry.toml pyproject.toml ./
-
-# Install dependencies only
-# hadolint ignore=SC2239
-RUN \
-    # Mount Poetry cache
-    --mount=type=cache,target=/root/.cache/pypoetry/ \
-    poetry install --no-interaction --no-root --only main
-
 # Copy source
 COPY src/ src/
 
-# Build wheel and install with pip to force non-editable install
-# See: https://github.com/python-poetry/poetry/issues/1382
-# hadolint ignore=SC2239
-RUN poetry build --no-interaction --format wheel && \
-    poetry run -- python -m pip install --no-deps --no-index --no-cache-dir dist/*.whl && \
-    rm --recursive --force dist/ ./*.egg-info
-
-# Copy file with environment variables for Python
-COPY .env.python .env.python
-
 # Setup main entrypoint
 COPY scripts/entrypoint.sh scripts/entrypoint.sh
-ENTRYPOINT ["/service/scripts/entrypoint.sh", "poetry", "run", "--", "dotenv", "--file", ".env.python", "run", "--", "{{ servicename }}"]
+ENTRYPOINT ["/service/scripts/entrypoint.sh", "echo", "Hello, world!"]
 CMD []
 
 # Setup ownership

@@ -1,9 +1,9 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: 0.10.1
+_commit: 0.11.0
 _src_path: gh:radio-aktywne/template-meta
 accountname: radio-aktywne
-description: Litestar app template 🌠
-reponame: template-app-litestar
-repourl: https://github.com/radio-aktywne/template-app-litestar
+description: Litestar service template 🌠
+reponame: template-service-litestar
+repourl: https://github.com/radio-aktywne/template-service-litestar
 templatename: litestar
-type: app
+type: service
