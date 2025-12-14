@@ -2,13 +2,8 @@
 
 accountname:
   type: str
-  help: The name of the organization on GitHub
+  help: The name of the account on GitHub
   default: radio-aktywne
-
-email:
-  type: str
-  help: Email address to use in package metadata
-  default: it@radioaktywne.pl
 
 servicename:
   type: str
@@ -70,17 +65,6 @@ imagename:
   help: The name of the Docker image
   default: "services/{{ servicename }}"
   when: "{{ registry }}"
-
-events:
-  type: bool
-  help: Whether you want to include support for application events
-  default: true
-
-sse:
-  type: bool
-  help: Whether you want to include an endpoint for Server-Sent Events
-  default: true
-  when: "{{ events }}"
 
 # Configuration
 
