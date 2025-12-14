@@ -9,7 +9,7 @@ class ServerConfig(BaseModel):
     host: str = "0.0.0.0"
     """Host to run the server on."""
 
-    port: int = Field({{ port }}, ge=0, le=65535)
+    port: int = Field(default={{ port }}, ge=0, le=65535)
     """Port to run the server on."""
 
     trusted: str | list[str] | None = "*"
@@ -19,8 +19,8 @@ class ServerConfig(BaseModel):
 class Config(BaseConfig):
     """Configuration for the service."""
 
-    server: ServerConfig = ServerConfig()
-    """Configuration for the server."""
-
     debug: bool = True
     """Enable debug mode."""
+
+    server: ServerConfig = ServerConfig()
+    """Configuration for the server."""

@@ -14,8 +14,7 @@ Litestar service template 🌠
 ## 💡 About
 
 This repository contains a [`copier`](https://copier.readthedocs.io) template
-that can be used to create [`Litestar`](https://litestar.dev) services for
-[`radio-aktywne`](https://github.com/radio-aktywne).
+that can be used to create [`Litestar`](https://litestar.dev) services.
 
 ## 📜 Usage
 
